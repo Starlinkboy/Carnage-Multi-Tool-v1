@@ -25,7 +25,8 @@
 For any queries and help regarding the tool contact Starlinkboy#0159
 
 ## Skids
-
+Dear Skids,
+I hope you know how pathetic you all are.
 
 ## Credits: Starlinkboy
 © Starlinkboy #0159

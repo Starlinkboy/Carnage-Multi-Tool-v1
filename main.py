@@ -4,15 +4,12 @@
 # https://github.com/starlinkboy/Carnage-Multi-tool-v1
 
 from util.plugins.common import *
-import httpx, os, sys, threading, time
+import threading, time
 from pystyle import *
 from colorama import Fore
-import discord
-from discord.ext import tasks
 from pystyle import Colorate, Colors
 import multiprocessing
 import keyboard
-import base64
 import util.massreport
 import util.accountinfo
 import util.TokenGrabber
