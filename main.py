@@ -5,6 +5,7 @@
 
 from util.plugins.common import *
 import threading, time
+from win10toast import ToastNotifier
 from pystyle import *
 from colorama import Fore
 from pystyle import Colorate, Colors
@@ -20,7 +21,10 @@ import util.massdm
 threads = 3
 cancel_key = "ctrl+x"
 
-
+class notis:
+ def trigger_notification(title, desc):
+		toast_noti.show_toast(f'{title}', desc, duration=2, threaded=True)
+  
 logo2 = "github.com/starlinkboy | Starlinkboy #0159"
 def main():
 
@@ -68,8 +72,10 @@ def main():
             try:
                 requests.delete(WebHook)
                 print(f'\n{Fore.GREEN}Webhook Successfully Deleted!{Fore.RESET}\n')
+                notis.trigger_notification('Success', 'Deleted Webhook')
             except Exception as e:
                 print(f'{Fore.RED}Error: {Fore.WHITE}{e} {Fore.RED}happened while trying to delete the Webhook')
+              notis.trigger_notification('Error', 'Deleting Webhook')
 
             input(f'{Fore.GREEN}[{Fore.CYAN}>>>{Fore.GREEN}] {Fore.RESET}Enter anything to continue. . . {Fore.RED}')
             main()
@@ -91,6 +97,7 @@ def main():
         channelIds = requests.get("https://discord.com/api/v9/users/@me/channels", headers=getheaders(token)).json()
         if not channelIds:
             print(f"{Fore.RESET}No Dms Found")
+            notis.trigger_notification('Error', 'No DMs Fetched!')
             sleep(3)
             main()
         for channel in [channelIds[i:i+3] for i in range(0, len(channelIds), 3)]:
